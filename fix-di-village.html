@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fix Di Village — Mission Elevate Ltd</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Mission Elevate Core Palette */
+    --blue:        #2852e8;
+    --blue-mid:    #5f7cf0;
+    --blue-light:  #e5edff;
+    --yellow:      #ffd801;
+    --yellow-deep: #ffc001;
+    --yellow-light:#fff4b3;
+
+    /* Neutrals */
+    --dark:        #333333;
+    --gray:        #555555;
+    --page-bg:     #f0f3ff;
+    --white:       #ffffff;
+
+    /* Semantic */
+    --red:         #d9231f;
+    --red-light:   #fdecea;
+    --green:       #1a7a3c;
+    --green-light: #e6f7ee;
+
+    --shadow:    0 4px 20px rgba(40,82,232,0.10);
+    --shadow-lg: 0 8px 40px rgba(40,82,232,0.16);
+    --radius:    16px;
+    --radius-sm: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--page-bg); color: var(--dark); line-height: 1.65; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--blue);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 66px; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 20px rgba(40,82,232,0.3);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; }
+  .nav-logo {
+    width: 40px; height: 40px; background: var(--yellow);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif; font-weight: 900; color: var(--blue);
+    font-size: 16px; letter-spacing: -1px;
+  }
+  .nav-title { color: var(--white); font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; line-height: 1.2; }
+  .nav-title span { display: block; color: var(--yellow); font-size: 10px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2px; align-items: center; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; font-weight: 500;
+    padding: 7px 14px; border-radius: 8px; transition: all 0.2s; font-family: 'Poppins', sans-serif;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+  .nav-emergency {
+    background: var(--red) !important; color: var(--white) !important;
+    font-weight: 700 !important; border-radius: 8px !important;
+  }
+  .nav-emergency:hover { background: #b71c1c !important; }
+
+  /* ── EMERGENCY BANNER ── */
+  .e-banner {
+    background: var(--red); color: var(--white);
+    padding: 10px 2rem; text-align: center; font-size: 13px; font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+  }
+  .e-banner a { color: var(--yellow); font-weight: 700; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--blue);
+    padding: 80px 2rem 96px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.05;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--yellow) 0, var(--yellow) 2px,
+      transparent 0, transparent 50%
+    );
+    background-size: 30px 30px;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--yellow); color: var(--blue);
+    font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 24px; margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900; color: var(--white); line-height: 1.1;
+    margin-bottom: 20px; max-width: 780px; margin-left: auto; margin-right: auto;
+  }
+  .hero h1 .accent { color: var(--yellow); }
+  .hero p {
+    color: rgba(255,255,255,0.82); font-size: 1.05rem; font-weight: 400;
+    max-width: 580px; margin: 0 auto 36px;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-yellow {
+    background: var(--yellow); color: var(--blue); border: none;
+    padding: 13px 30px; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: all 0.2s; letter-spacing: 0.3px;
+  }
+  .btn-yellow:hover { background: #ffe533; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,216,1,0.4); }
+  .btn-white-outline {
+    background: transparent; color: var(--white);
+    border: 2px solid rgba(255,255,255,0.45);
+    padding: 13px 30px; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-white-outline:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.08); }
+
+  /* ── SECTIONS ── */
+  .section { padding: 72px 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .section-label .bar { height: 3px; width: 28px; background: var(--yellow); border-radius: 2px; }
+  .section-label p { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--blue); }
+  h2.section-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 800; margin-bottom: 10px; line-height: 1.15; }
+  .section-sub { color: var(--gray); font-size: 0.97rem; max-width: 540px; margin-bottom: 40px; }
+
+  /* ── PORTAL CARDS ── */
+  .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; }
+  .portal-card {
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); transition: all 0.25s; cursor: pointer;
+    text-decoration: none; display: flex; flex-direction: column;
+  }
+  .portal-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .pc-header { padding: 32px 28px 22px; flex: 1; }
+  .pc-icon {
+    width: 58px; height: 58px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; font-size: 27px; margin-bottom: 18px;
+  }
+  .pc-header h3 { font-family: 'Poppins', sans-serif; font-size: 1.25rem; font-weight: 800; margin-bottom: 10px; }
+  .pc-header p { font-size: 0.9rem; line-height: 1.65; opacity: 0.88; }
+  .pc-footer {
+    padding: 14px 28px; font-family: 'Poppins', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.3px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  /* Children card — blue */
+  .card-children { background: var(--blue); color: white; }
+  .card-children .pc-icon { background: rgba(255,255,255,0.15); }
+  .card-children .pc-footer { background: rgba(0,0,0,0.12); }
+  /* Parents card — dark */
+  .card-parents { background: var(--dark); color: white; }
+  .card-parents .pc-icon { background: rgba(255,255,255,0.1); }
+  .card-parents .pc-footer { background: rgba(0,0,0,0.2); }
+  /* Village card — yellow */
+  .card-village { background: var(--yellow); color: var(--dark); }
+  .card-village .pc-icon { background: rgba(40,82,232,0.12); }
+  .card-village .pc-footer { background: rgba(0,0,0,0.06); border-top-color: rgba(0,0,0,0.08); }
+
+  /* ── PORTAL SECTIONS ── */
+  .portal-section { display: none; }
+  .portal-section.active { display: block; }
+
+  .portal-wrap { max-width: 1100px; margin: 0 auto; padding: 64px 2rem; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--blue); font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; margin-bottom: 28px; transition: gap 0.2s; text-decoration: none;
+  }
+  .back-link:hover { gap: 10px; }
+  .portal-header {
+    background: var(--white); border-radius: var(--radius);
+    padding: 26px 30px; margin-bottom: 28px; box-shadow: var(--shadow);
+    display: flex; align-items: center; gap: 18px;
+    border-left: 5px solid var(--blue);
+  }
+  .portal-header.yellow-accent { border-left-color: var(--yellow-deep); }
+  .portal-header.dark-accent { border-left-color: var(--dark); }
+  .ph-icon { font-size: 38px; }
+  .portal-header h2 { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 3px; }
+  .portal-header p { font-size: 0.9rem; color: var(--gray); }
+
+  /* Tabs */
+  .info-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
+  .tab-btn {
+    padding: 8px 18px; border-radius: 24px; font-family: 'Poppins', sans-serif;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    border: 2px solid #d0d5e8; background: var(--white); color: var(--gray);
+    transition: all 0.2s; letter-spacing: 0.2px;
+  }
+  .tab-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .tab-btn.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Content Cards */
+  .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .info-card {
+    background: var(--white); border-radius: var(--radius-sm); padding: 22px 22px;
+    box-shadow: var(--shadow); border-top: 4px solid var(--blue);
+  }
+  .info-card.yellow-top { border-top-color: var(--yellow-deep); }
+  .info-card.red-top { border-top-color: var(--red); }
+  .info-card.dark-top { border-top-color: var(--dark); }
+  .info-card h4 { font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
+  .info-card p, .info-card li { font-size: 0.88rem; color: var(--gray); line-height: 1.75; }
+  .info-card ul { padding-left: 17px; }
+  .info-card li { margin-bottom: 3px; }
+
+  .warning-box {
+    background: var(--red-light); border: 1.5px solid #f5c6c2; border-radius: var(--radius-sm);
+    padding: 18px 22px; margin: 0 0 16px;
+  }
+  .warning-box h4 { font-family: 'Poppins', sans-serif; color: var(--red); font-size: 0.9rem; font-weight: 700; margin-bottom: 7px; }
+  .warning-box p, .warning-box li { color: #7B1C1C; font-size: 0.87rem; line-height: 1.7; }
+  .warning-box ul { padding-left: 17px; }
+
+  .tip-box {
+    background: var(--blue-light); border: 1.5px solid #b8c8f5; border-radius: var(--radius-sm);
+    padding: 18px 22px; margin-top: 16px;
+  }
+  .tip-box h4 { font-family: 'Poppins', sans-serif; color: var(--blue); font-size: 0.9rem; font-weight: 700; margin-bottom: 7px; }
+  .tip-box p, .tip-box li { color: #1a2f7a; font-size: 0.87rem; line-height: 1.7; }
+  .tip-box a { color: var(--blue); font-weight: 600; }
+
+  .yellow-box {
+    background: var(--yellow-light); border: 1.5px solid #ffe066; border-radius: var(--radius-sm);
+    padding: 18px 22px; margin-top: 16px;
+  }
+  .yellow-box h4 { font-family: 'Poppins', sans-serif; color: #7a5a00; font-size: 0.9rem; font-weight: 700; margin-bottom: 7px; }
+  .yellow-box p { color: #5a4000; font-size: 0.87rem; line-height: 1.7; }
+
+  /* Portal section backgrounds */
+  .bg-blue-light { background: var(--blue-light); }
+  .bg-yellow-light { background: #fffde8; }
+  .bg-gray-light { background: #f5f5f8; }
+
+  /* ── STATS ── */
+  .stats-section { background: var(--blue); padding: 72px 2rem; }
+  .stats-inner { max-width: 1100px; margin: 0 auto; }
+  .stats-inner .section-label p { color: var(--yellow); }
+  .stats-inner .section-label .bar { background: var(--yellow); }
+  .stats-inner h2.section-title { color: var(--white); }
+  .stats-inner .section-sub { color: rgba(255,255,255,0.7); max-width: 540px; margin-bottom: 40px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 16px; }
+  .stat-card {
+    background: rgba(255,255,255,0.09); border: 1.5px solid rgba(255,255,255,0.14);
+    border-radius: var(--radius-sm); padding: 24px 20px; text-align: center;
+    transition: background 0.2s;
+  }
+  .stat-card:hover { background: rgba(255,255,255,0.14); }
+  .stat-number { font-family: 'Poppins', sans-serif; font-size: 2.6rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+  .stat-label { color: rgba(255,255,255,0.88); font-size: 0.84rem; margin-top: 9px; line-height: 1.55; font-weight: 500; }
+  .stat-source { color: rgba(255,255,255,0.38); font-size: 0.72rem; margin-top: 7px; font-style: italic; }
+  .stats-ref { margin-top: 28px; background: rgba(255,255,255,0.06); border-radius: var(--radius-sm); padding: 18px 22px; font-size: 0.79rem; color: rgba(255,255,255,0.45); }
+  .stats-ref strong { color: rgba(255,255,255,0.65); }
+
+  /* ── HOTLINES ── */
+  .hotline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .hotline-card {
+    background: var(--white); border-radius: var(--radius-sm); padding: 18px 20px;
+    box-shadow: var(--shadow); border-top: 4px solid var(--blue);
+  }
+  .hotline-card.urgent { border-top-color: var(--red); }
+  .hotline-org { font-size: 0.78rem; color: var(--gray); font-weight: 600; font-family: 'Poppins', sans-serif; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .hotline-number { font-family: 'Poppins', sans-serif; font-size: 1.45rem; font-weight: 800; color: var(--dark); }
+  .hotline-desc { font-size: 0.81rem; color: var(--gray); margin-top: 5px; line-height: 1.5; }
+
+  /* ── RESOURCES ── */
+  .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .resource-card {
+    background: var(--white); border-radius: var(--radius-sm); padding: 18px 20px;
+    box-shadow: var(--shadow); display: flex; gap: 15px; align-items: flex-start;
+    text-decoration: none; color: inherit; transition: all 0.2s;
+    border: 1.5px solid #dde3f5;
+  }
+  .resource-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .resource-icon {
+    width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px;
+    background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .resource-name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.92rem; margin-bottom: 3px; color: var(--dark); }
+  .resource-desc { font-size: 0.81rem; color: var(--gray); line-height: 1.55; }
+  .resource-link { font-size: 0.78rem; color: var(--blue); margin-top: 5px; font-weight: 700; font-family: 'Poppins', sans-serif; }
+
+  /* ── ABOUT ── */
+  .about-section { background: var(--yellow-light); border-top: 2px solid var(--yellow); border-bottom: 2px solid var(--yellow); }
+  .about-inner { max-width: 1100px; margin: 0 auto; padding: 72px 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+  @media (max-width: 720px) { .about-inner { grid-template-columns: 1fr; } }
+  .me-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue); color: var(--white);
+    font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px;
+  }
+  .about-text h2 { font-family: 'Poppins', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--blue); margin-bottom: 14px; line-height: 1.2; }
+  .about-text p { color: var(--gray); font-size: 0.93rem; margin-bottom: 12px; line-height: 1.78; }
+  .value-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .value-item { display: flex; align-items: flex-start; gap: 11px; }
+  .v-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--yellow); border: 2px solid var(--yellow-deep); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
+  .v-dot::after { content: ''; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; }
+  .value-item span { font-size: 0.91rem; color: var(--gray); line-height: 1.6; }
+  .value-item span strong { color: var(--dark); }
+  .about-card {
+    background: var(--white); border-radius: var(--radius); padding: 30px;
+    box-shadow: var(--shadow); border-top: 4px solid var(--blue);
+  }
+  .about-card h3 { font-family: 'Poppins', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--blue); margin-bottom: 14px; }
+  .about-card p { font-size: 0.88rem; color: var(--gray); margin-bottom: 12px; line-height: 1.75; }
+  .about-divider { border: none; border-top: 1px solid #e5edff; margin: 16px 0; }
+  .contact-line { font-size: 0.82rem; color: var(--gray); }
+  .contact-line strong { color: var(--dark); }
+  .me-tagline {
+    margin-top: 14px; background: var(--yellow); color: var(--blue);
+    padding: 10px 16px; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 700;
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  footer { background: var(--dark); color: rgba(255,255,255,0.65); padding: 52px 2rem 28px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+  .f-brand-name { font-family: 'Poppins', sans-serif; color: var(--white); font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+  .f-brand-sub { font-size: 0.84rem; line-height: 1.7; margin-bottom: 14px; }
+  .f-emergency { display: inline-block; background: var(--yellow); color: var(--blue); font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 800; padding: 7px 16px; border-radius: 6px; }
+  .footer-col h5 { font-family: 'Poppins', sans-serif; color: var(--white); font-size: 0.82rem; font-weight: 700; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.55); font-size: 0.84rem; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--yellow); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 22px; font-size: 0.78rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .footer-bottom .highlight { color: var(--yellow); font-weight: 600; }
+
+  /* ── MISC ── */
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .hero { padding: 52px 1.2rem 60px; }
+    .section { padding: 48px 1.2rem; }
+    .portal-header { flex-direction: column; text-align: center; }
+    .info-tabs { justify-content: flex-start; }
+    .portal-wrap { padding: 48px 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">ME</div>
+    <div class="nav-title">
+      Fix Di Village
+      <span>Mission Elevate Ltd · Kingston, Jamaica</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#portals">Portals</a>
+    <a href="#statistics">Statistics</a>
+    <a href="#resources">Resources</a>
+    <a href="#contact">Get Help</a>
+    <a href="#contact" class="nav-emergency">🚨 Emergency: 119</a>
+  </div>
+</nav>
+
+<!-- EMERGENCY BANNER -->
+<div class="e-banner">
+  🚨 If a child is in <strong>immediate danger</strong>, call <strong>119</strong> (Police) or <a href="tel:18882445374">1-888-CHILDREN</a> (CPFSA) now. You can stay anonymous.
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🇯🇲 Jamaica's Child Safety Information Hub</div>
+    <h1>Every Child Deserves<br>a <span class="accent">Safe Village.</span></h1>
+    <p>A free, trusted resource for children, parents and community members — to recognise, respond to and report bullying, abuse, trafficking and more.</p>
+    <div class="hero-btns">
+      <a href="#portals" class="btn-yellow">Choose Your Portal</a>
+      <a href="#statistics" class="btn-white-outline">Why This Matters</a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAL CHOOSER -->
+<section class="section" id="portals">
+  <div class="section-label"><div class="bar"></div><p>Who Are You?</p></div>
+  <h2 class="section-title">Choose Your Portal</h2>
+  <p class="section-sub">Select the section that applies to you. Each portal is tailored with the right information, language and resources for your situation.</p>
+  <div class="portal-grid">
+    <a class="portal-card card-children" onclick="openPortal('children')">
+      <div class="pc-header">
+        <div class="pc-icon">🧒</div>
+        <h3>I Am a Child or Young Person</h3>
+        <p>Learn what bullying looks like, know your rights, understand what's okay and what's not — and find out exactly who to call for help.</p>
+      </div>
+      <div class="pc-footer"><span>Enter Children's Portal</span><span>→</span></div>
+    </a>
+    <a class="portal-card card-parents" onclick="openPortal('parents')">
+      <div class="pc-header">
+        <div class="pc-icon">👨‍👩‍👧</div>
+        <h3>I Am a Parent or Guardian</h3>
+        <p>Positive parenting tools, warning signs of abuse and trafficking, and practical steps to protect and support your children every day.</p>
+      </div>
+      <div class="pc-footer"><span>Enter Parents' Portal</span><span>→</span></div>
+    </a>
+    <a class="portal-card card-village" onclick="openPortal('village')">
+      <div class="pc-header">
+        <div class="pc-icon">🏘️</div>
+        <h3>I Am a Community Member</h3>
+        <p>As a neighbour, teacher, church leader or community member — learn to identify, respond to and report abuse happening around you.</p>
+      </div>
+      <div class="pc-footer"><span>Enter Community Portal</span><span>→</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════ CHILDREN'S PORTAL ═══════════ -->
+<div id="portal-children" class="portal-section bg-blue-light">
+  <div class="portal-wrap">
+    <a class="back-link" onclick="closePortal('children')">← Back to Portals</a>
+    <div class="portal-header">
+      <div class="ph-icon">🧒</div>
+      <div>
+        <h2>Children &amp; Young People</h2>
+        <p>This space is just for you. Everything here is to help you stay safe, know your rights, and know who to call.</p>
+      </div>
+    </div>
+
+    <div class="info-tabs">
+      <button class="tab-btn active" onclick="switchTab('c','bullying',this)">What is Bullying?</button>
+      <button class="tab-btn" onclick="switchTab('c','abuse',this)">Understanding Abuse</button>
+      <button class="tab-btn" onclick="switchTab('c','trafficking',this)">Trafficking Warning Signs</button>
+      <button class="tab-btn" onclick="switchTab('c','rights',this)">Your Rights</button>
+      <button class="tab-btn" onclick="switchTab('c','help',this)">How to Get Help</button>
+    </div>
+
+    <div id="c-bullying" class="tab-content active">
+      <div class="content-grid">
+        <div class="info-card">
+          <h4>📌 What is Bullying?</h4>
+          <p>Bullying is when someone keeps hurting you, leaving you out, or making you feel bad — on purpose. It is <strong>never your fault.</strong> Types include:</p>
+          <ul>
+            <li>Physical — hitting, pushing, taking your belongings</li>
+            <li>Verbal — name-calling, threats, mockery</li>
+            <li>Social — spreading rumours, excluding you</li>
+            <li>Cyberbullying — hurtful messages or posts online</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>🔍 Signs You Are Being Bullied</h4>
+          <ul>
+            <li>You dread going to school every day</li>
+            <li>Your things keep going missing or getting damaged</li>
+            <li>You feel sad, angry or scared without knowing why</li>
+            <li>You eat alone or avoid spending time with others</li>
+            <li>You get hurt and try to make excuses for it</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>✅ What You Can Do</h4>
+          <ul>
+            <li>Tell a trusted adult — teacher, parent, or relative</li>
+            <li>Walk away calmly if you feel safe doing so</li>
+            <li>Write down what happened with the date and time</li>
+            <li>Screenshot cyberbullying — don't reply to messages</li>
+            <li>You are not alone — asking for help is strength</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>💬 You Have the Right to Feel Safe at School and at Home</h4>
+        <p>Jamaica's <strong>Child Care and Protection Act</strong> says every child has the right to be protected from harm. Bullying is a form of harm. It is always okay to speak up.</p>
+      </div>
+    </div>
+
+    <div id="c-abuse" class="tab-content">
+      <div class="warning-box">
+        <h4>⚠️ No Adult Has the Right to Hurt You</h4>
+        <p>If any adult — including family members — hurts you physically, sexually, or emotionally, or ignores your basic needs, that is abuse. It is not normal. It is not love. It is not your fault.</p>
+      </div>
+      <div class="content-grid">
+        <div class="info-card red-top">
+          <h4>🚫 Types of Child Abuse</h4>
+          <ul>
+            <li><strong>Physical abuse:</strong> Hitting, burning, or kicking beyond any discipline</li>
+            <li><strong>Sexual abuse:</strong> Any sexual touch or act by an adult or older person</li>
+            <li><strong>Emotional abuse:</strong> Constantly belittled, humiliated, threatened, or ignored</li>
+            <li><strong>Neglect:</strong> Not being given food, shelter, medical care, or love</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>💛 You Are Believed</h4>
+          <p>Many children in Jamaica experience abuse and never tell anyone because they are afraid. But telling a trusted person is the bravest thing you can do. It can stop the abuse and keep you safe forever.</p>
+        </div>
+        <div class="info-card">
+          <h4>📞 Who to Tell</h4>
+          <ul>
+            <li>A teacher, school counsellor, or your principal</li>
+            <li>A trusted aunt, uncle, neighbour or friend's parent</li>
+            <li>Call <strong>1-888-CHILDREN</strong> — free and confidential</li>
+            <li>Call <strong>119</strong> if you are in danger right now</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="c-trafficking" class="tab-content">
+      <div class="warning-box">
+        <h4>🚨 Human Trafficking is a Crime — Even When it Seems Like Help</h4>
+        <p>People who want to exploit children often pretend to be helpers, friends, or offer gifts and a "better life." Learning the warning signs can protect you.</p>
+      </div>
+      <div class="content-grid">
+        <div class="info-card red-top">
+          <h4>🔴 Warning Signs</h4>
+          <ul>
+            <li>A stranger offers you gifts, money, or a "better life"</li>
+            <li>Someone asks you to travel alone with them</li>
+            <li>An adult wants to keep your friendship a secret</li>
+            <li>Someone takes photos or videos of you without permission</li>
+            <li>You are asked to do adult things in exchange for anything</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>🛡️ How to Stay Safe</h4>
+          <ul>
+            <li>Never accept rides from people you don't know well</li>
+            <li>Never meet someone online in secret without telling an adult</li>
+            <li>Always tell a trusted adult where you are going</li>
+            <li>If something feels wrong — it probably is. Trust yourself.</li>
+            <li>It is always okay to say NO to an adult.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="c-rights" class="tab-content">
+      <div class="content-grid">
+        <div class="info-card">
+          <h4>⚖️ Under Jamaican Law, You Have the Right To:</h4>
+          <ul>
+            <li>Be protected from violence, abuse and neglect</li>
+            <li>Receive a quality education</li>
+            <li>Access healthcare and have your basic needs met</li>
+            <li>Be heard in decisions that affect your life</li>
+            <li>Be protected from sexual exploitation</li>
+            <li>Not be used for harmful or dangerous child labour</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>📜 Laws That Protect You</h4>
+          <ul>
+            <li><strong>Child Care and Protection Act (2004)</strong></li>
+            <li><strong>Sexual Offences Act (2009)</strong></li>
+            <li><strong>Trafficking in Persons (Prevention) Act (2007)</strong></li>
+            <li><strong>UN Convention on the Rights of the Child</strong><br>(Jamaica ratified 1991)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>🌟 These Are Not Just Words</h4>
+        <p>These laws mean real people have a legal duty to protect you. If your rights are being violated, you can report it to the <strong>Office of the Children's Advocate</strong> at <strong>876-929-8618</strong> or visit <a href="https://www.oca.gov.jm" target="_blank">oca.gov.jm</a>.</p>
+      </div>
+    </div>
+
+    <div id="c-help" class="tab-content">
+      <div class="hotline-grid">
+        <div class="hotline-card urgent">
+          <div class="hotline-org">Police Emergency</div>
+          <div class="hotline-number">119</div>
+          <div class="hotline-desc">Call immediately if you or someone is in danger right now.</div>
+        </div>
+        <div class="hotline-card urgent">
+          <div class="hotline-org">CPFSA Child Abuse Hotline</div>
+          <div class="hotline-number">1-888-CHILDREN</div>
+          <div class="hotline-desc">Free, confidential reporting. Available 24 hours, 7 days.</div>
+        </div>
+        <div class="hotline-card">
+          <div class="hotline-org">Office of the Children's Advocate</div>
+          <div class="hotline-number">876-929-8618</div>
+          <div class="hotline-desc">Report violations of children's rights in Jamaica.</div>
+        </div>
+        <div class="hotline-card">
+          <div class="hotline-org">CISOCA — Sexual Offences</div>
+          <div class="hotline-number">876-967-1772</div>
+          <div class="hotline-desc">Confidential support for sexual abuse cases.</div>
+        </div>
+      </div>
+      <div class="yellow-box" style="margin-top:20px;">
+        <h4>🌟 Remember This</h4>
+        <p>You do not need proof to report. You do not need to give your name. You will not get in trouble for telling the truth. The people on these lines are trained to help and protect you — not to judge you.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PARENTS' PORTAL ═══════════ -->
+<div id="portal-parents" class="portal-section bg-gray-light">
+  <div class="portal-wrap">
+    <a class="back-link" onclick="closePortal('parents')">← Back to Portals</a>
+    <div class="portal-header dark-accent">
+      <div class="ph-icon">👨‍👩‍👧</div>
+      <div>
+        <h2>Parents &amp; Guardians</h2>
+        <p>Knowledge, tools and resources to help you protect, nurture and advocate for your children every day.</p>
+      </div>
+    </div>
+
+    <div class="info-tabs">
+      <button class="tab-btn active" onclick="switchTab('p','parenting',this)">Positive Parenting</button>
+      <button class="tab-btn" onclick="switchTab('p','signs',this)">Signs of Abuse</button>
+      <button class="tab-btn" onclick="switchTab('p','bullying',this)">School Bullying</button>
+      <button class="tab-btn" onclick="switchTab('p','trafficking',this)">Trafficking Awareness</button>
+      <button class="tab-btn" onclick="switchTab('p','report',this)">How to Report</button>
+    </div>
+
+    <div id="p-parenting" class="tab-content active">
+      <div class="content-grid">
+        <div class="info-card">
+          <h4>🌱 Positive Parenting Practices</h4>
+          <ul>
+            <li>Show affection openly and consistently every day</li>
+            <li>Set clear, age-appropriate boundaries with explanation</li>
+            <li>Listen actively when your child speaks — do not dismiss</li>
+            <li>Use natural consequences instead of physical punishment</li>
+            <li>Praise effort and progress, not just results</li>
+            <li>Make time for regular one-on-one connection</li>
+          </ul>
+        </div>
+        <div class="info-card red-top">
+          <h4>🚫 Harmful Parenting Behaviours</h4>
+          <ul>
+            <li>Physical punishment (beating, slapping) — harmful to child development</li>
+            <li>Using fear, shame, or humiliation as discipline</li>
+            <li>Emotional unavailability or chronic neglect</li>
+            <li>Favouritism between children in the home</li>
+            <li>Exposing children to domestic violence</li>
+            <li>Using children as messengers in adult conflicts</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>💬 Building Open Communication</h4>
+          <ul>
+            <li>Create a "no judgment" space for your child's questions</li>
+            <li>Use age-appropriate language about body safety</li>
+            <li>Ask open questions: "How did that make you feel?"</li>
+            <li>Believe and validate your child when they share hard things</li>
+            <li>Never punish a child for telling the truth</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>📌 Free Parenting Support in Jamaica</h4>
+        <p>The <strong>Child Protection and Family Services Agency (CPFSA)</strong> offers free parenting workshops and family support services across all parishes. Call <strong>1-888-CHILDREN</strong> or visit <a href="https://www.cpfsa.gov.jm" target="_blank">cpfsa.gov.jm</a>.</p>
+      </div>
+    </div>
+
+    <div id="p-signs" class="tab-content">
+      <div class="warning-box">
+        <h4>⚠️ If You Suspect Abuse, Act — You Don't Need to Be 100% Sure</h4>
+        <p>Under the <strong>Child Care and Protection Act</strong>, suspicion alone is enough to make a report. Reporting is your legal and moral duty. You cannot be punished for a good-faith report.</p>
+      </div>
+      <div class="content-grid">
+        <div class="info-card red-top">
+          <h4>🔴 Physical Signs</h4>
+          <ul>
+            <li>Unexplained bruises, burns, or cuts</li>
+            <li>Injuries that don't match the explanation given</li>
+            <li>Flinching at sudden movements or touch</li>
+            <li>Wearing long sleeves in hot weather to hide marks</li>
+            <li>Repeated "accidents" or unexplained hospital visits</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>🧠 Behavioural &amp; Emotional Signs</h4>
+          <ul>
+            <li>Sudden withdrawal, aggression, or regression</li>
+            <li>Age-inappropriate sexual behaviour or knowledge</li>
+            <li>Intense fear of specific adults, places or situations</li>
+            <li>Dramatic changes in eating, sleep, or school performance</li>
+            <li>Nightmares, bedwetting, anxiety, or unexplained sadness</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>🏠 Neglect Warning Signs</h4>
+          <ul>
+            <li>Consistently hungry or quietly stealing food</li>
+            <li>Poor hygiene or inappropriate clothing for weather</li>
+            <li>Untreated medical, dental, or vision problems</li>
+            <li>Frequent school absences with no explanation</li>
+            <li>Parent appears chronically unavailable or impaired</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="p-bullying" class="tab-content">
+      <div class="content-grid">
+        <div class="info-card">
+          <h4>🏫 Signs Your Child Is Being Bullied</h4>
+          <ul>
+            <li>Reluctance or fear of going to school each day</li>
+            <li>Coming home with damaged property or unexplained injuries</li>
+            <li>Mood changes — sadness, anger, withdrawal — after school</li>
+            <li>Withdrawing from activities and friends they used to love</li>
+            <li>Requesting extra money for "lunch" — possible extortion</li>
+          </ul>
+        </div>
+        <div class="info-card dark-top">
+          <h4>👊 Signs Your Child May Be Bullying Others</h4>
+          <ul>
+            <li>Has money or new items they can't explain</li>
+            <li>Shows little empathy when others are hurt</li>
+            <li>Gets into fights and always blames others</li>
+            <li>Friends use aggression or humiliation as "fun"</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>✅ What You Should Do</h4>
+          <ul>
+            <li>Listen calmly — do not minimise or dismiss their experience</li>
+            <li>Document incidents with dates and details</li>
+            <li>Meet with the principal and guidance counsellor</li>
+            <li>If unresolved, escalate to the <strong>Ministry of Education</strong></li>
+            <li>Consider counselling support for your child</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="p-trafficking" class="tab-content">
+      <div class="warning-box">
+        <h4>🔴 Jamaica is a Source, Transit and Destination Country for Trafficking</h4>
+        <p>Children are trafficked for sexual exploitation and forced labour. Girls are disproportionately targeted, and many are recruited by people they already know and trust.</p>
+      </div>
+      <div class="content-grid">
+        <div class="info-card red-top">
+          <h4>⚠️ How Children Are Recruited</h4>
+          <ul>
+            <li>Promises of modelling, music, or entertainment careers</li>
+            <li>Romantic grooming by significantly older individuals</li>
+            <li>False promises of overseas work or education</li>
+            <li>Gifts of phones, clothes, shoes, or money to young girls</li>
+            <li>Social media recruitment and online grooming by strangers</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>🛡️ Protect Your Child</h4>
+          <ul>
+            <li>Know your child's online friends and activities</li>
+            <li>Talk openly about body safety, consent, and boundaries</li>
+            <li>Verify ALL job or travel opportunities independently</li>
+            <li>Keep communication open — make it safe to tell you anything</li>
+            <li>If something feels wrong about an adult's interest — act fast</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="p-report" class="tab-content">
+      <div class="hotline-grid">
+        <div class="hotline-card urgent">
+          <div class="hotline-org">Immediate Danger — Police</div>
+          <div class="hotline-number">119</div>
+          <div class="hotline-desc">Call immediately if a child is at immediate risk of harm.</div>
+        </div>
+        <div class="hotline-card urgent">
+          <div class="hotline-org">Child Protection &amp; Family Services</div>
+          <div class="hotline-number">1-888-CHILDREN</div>
+          <div class="hotline-desc">Report abuse, neglect, or welfare concerns. 24/7. Confidential.</div>
+        </div>
+        <div class="hotline-card">
+          <div class="hotline-org">Office of the Children's Registry</div>
+          <div class="hotline-number">1-888-REPORT-IT</div>
+          <div class="hotline-desc">Report sexual abuse, neglect, or children needing care and protection.</div>
+        </div>
+        <div class="hotline-card">
+          <div class="hotline-org">CISOCA — Sexual Offences</div>
+          <div class="hotline-number">876-967-1772</div>
+          <div class="hotline-desc">Confidential. All information treated with full sensitivity.</div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-top:20px;">
+        <h4>⚖️ Your Legal Obligation as a Parent</h4>
+        <p>Under the <strong>Child Care and Protection Act of Jamaica (2004)</strong>, certain professionals (teachers, doctors, nurses, social workers) are <em>legally mandated to report</em> suspected child abuse. All Jamaicans are strongly encouraged to report. You cannot be prosecuted for making a good-faith report.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ VILLAGE / COMMUNITY PORTAL ═══════════ -->
+<div id="portal-village" class="portal-section bg-yellow-light">
+  <div class="portal-wrap">
+    <a class="back-link" onclick="closePortal('village')">← Back to Portals</a>
+    <div class="portal-header yellow-accent">
+      <div class="ph-icon">🏘️</div>
+      <div>
+        <h2>Village &amp; Community Members</h2>
+        <p>It takes a village to raise a child — and to protect one. Learn how to recognise abuse and respond.</p>
+      </div>
+    </div>
+
+    <div class="info-tabs">
+      <button class="tab-btn active" onclick="switchTab('v','recognise',this)">Recognise Abuse</button>
+      <button class="tab-btn" onclick="switchTab('v','trafficking',this)">Spot Trafficking</button>
+      <button class="tab-btn" onclick="switchTab('v','support',this)">Support Families</button>
+      <button class="tab-btn" onclick="switchTab('v','report',this)">How to Report</button>
+      <button class="tab-btn" onclick="switchTab('v','teachers',this)">For Teachers</button>
+    </div>
+
+    <div id="v-recognise" class="tab-content active">
+      <div class="content-grid">
+        <div class="info-card red-top">
+          <h4>🔍 Signs of Abuse in a Child</h4>
+          <ul>
+            <li>Visible injuries — bruises, cuts, burns — especially repeated</li>
+            <li>Appears malnourished, dirty, or dressed inappropriately for weather</li>
+            <li>Frequently absent from school without explanation</li>
+            <li>Seems fearful, withdrawn, or unusually aggressive</li>
+            <li>Shows inappropriate sexual knowledge or behaviour for age</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>🏠 Signs of Concern in a Home</h4>
+          <ul>
+            <li>Children seen begging or working instead of attending school</li>
+            <li>Child frequently left alone or unsupervised for long periods</li>
+            <li>Sounds of crying, screaming, or distress coming from the home</li>
+            <li>Adults who seem hostile about others interacting with the child</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>✅ What You Should Do</h4>
+          <ul>
+            <li><strong>Do not confront the abuser</strong> — this can endanger the child</li>
+            <li>Report to CPFSA: <strong>1-888-CHILDREN</strong></li>
+            <li>If the child is in immediate danger, call <strong>119</strong></li>
+            <li>You do not need to give your name to report</li>
+            <li>You cannot be punished for a good-faith report</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="v-trafficking" class="tab-content">
+      <div class="warning-box">
+        <h4>🚨 Trafficking Can Happen in Plain Sight in Your Community</h4>
+        <p>Traffickers operate in communities, schools, and online. Recognising the signs early and acting quickly can save a child's life.</p>
+      </div>
+      <div class="content-grid">
+        <div class="info-card red-top">
+          <h4>🔴 Community Warning Signs</h4>
+          <ul>
+            <li>Young girls seen regularly with older men giving them gifts</li>
+            <li>Children who appear coached or scripted when speaking</li>
+            <li>Unfamiliar adults acting as "guardians" for neighbourhood children</li>
+            <li>Children working in homes or businesses without attending school</li>
+            <li>Children appearing disoriented, fearful, or not allowed to speak freely</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>📱 Online Recruitment Signs</h4>
+          <ul>
+            <li>Young girls with sudden unexplained brand items or phones</li>
+            <li>Children speaking of "parties" with older adults they barely know</li>
+            <li>Sudden unexplained disappearances and reappearances</li>
+            <li>Children sharing adult-type content on social media</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>📞 Report Trafficking</h4>
+          <ul>
+            <li><strong>NATFATIP Hotline: 876-922-2371</strong></li>
+            <li><strong>JCF Counter-Trafficking Unit: 876-922-2371</strong></li>
+            <li>Or call <strong>1-888-CHILDREN</strong></li>
+            <li>You can report anonymously — your name will be protected</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="v-support" class="tab-content">
+      <div class="content-grid">
+        <div class="info-card yellow-top">
+          <h4>🤝 How Neighbours Can Help</h4>
+          <ul>
+            <li>Be someone a child in your community can safely talk to</li>
+            <li>Offer practical support to overwhelmed parents (food, childcare)</li>
+            <li>Involve churches, community groups and schools in child safety</li>
+            <li>Organise community safety watch programmes</li>
+            <li>Check in on families you can see are under visible stress</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>⛪ The Role of Faith Communities</h4>
+          <ul>
+            <li>Host parenting workshops with trained facilitators</li>
+            <li>Provide structured mentorship for at-risk youth</li>
+            <li>Create safe, supervised after-school spaces for children</li>
+            <li>Partner with CPFSA and social workers for community outreach</li>
+          </ul>
+        </div>
+        <div class="info-card dark-top">
+          <h4>🏫 The Role of Schools</h4>
+          <ul>
+            <li>Mandatory reporting of all suspected abuse — no exceptions</li>
+            <li>Guidance counsellors who are visible and accessible to students</li>
+            <li>Peer support and structured anti-bullying programmes</li>
+            <li>Anonymous reporting mechanisms for students to use safely</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="v-report" class="tab-content">
+      <div class="hotline-grid">
+        <div class="hotline-card urgent">
+          <div class="hotline-org">Police Emergency</div>
+          <div class="hotline-number">119</div>
+          <div class="hotline-desc">For immediate danger to a child or adult in your community.</div>
+        </div>
+        <div class="hotline-card urgent">
+          <div class="hotline-org">CPFSA Child Abuse Hotline</div>
+          <div class="hotline-number">1-888-CHILDREN</div>
+          <div class="hotline-desc">Jamaica's national child abuse hotline. 24/7. Anonymous.</div>
+        </div>
+        <div class="hotline-card">
+          <div class="hotline-org">NATFATIP — Anti-Trafficking</div>
+          <div class="hotline-number">876-922-2371</div>
+          <div class="hotline-desc">National Task Force Against Trafficking in Persons.</div>
+        </div>
+        <div class="hotline-card">
+          <div class="hotline-org">Office of the Children's Registry</div>
+          <div class="hotline-number">1-888-REPORT-IT</div>
+          <div class="hotline-desc">Report child abuse, neglect, or exploitation confidentially.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="v-teachers" class="tab-content">
+      <div class="warning-box">
+        <h4>⚖️ Mandatory Reporting — Know Your Legal Duty</h4>
+        <p>As a teacher or school professional, you are a <strong>mandated reporter</strong> under Jamaica's Child Care and Protection Act. Failure to report suspected abuse is a criminal offence. You only need to report — not investigate.</p>
+      </div>
+      <div class="content-grid">
+        <div class="info-card">
+          <h4>🏫 Signs to Watch For at School</h4>
+          <ul>
+            <li>Child makes a direct or indirect disclosure of abuse</li>
+            <li>Unexplained injuries, chronic hunger, or fatigue</li>
+            <li>Sudden significant grade drops or increased absences</li>
+            <li>Child appears afraid to go home after school</li>
+            <li>Age-inappropriate sexual drawings, language, or behaviour</li>
+          </ul>
+        </div>
+        <div class="info-card yellow-top">
+          <h4>📋 Steps for Teachers Who Suspect Abuse</h4>
+          <ul>
+            <li>Document the observation with date, time and full detail</li>
+            <li>Report immediately to your school principal</li>
+            <li>The school must report to CPFSA within 24 hours</li>
+            <li>Do NOT investigate or confront the alleged abuser</li>
+            <li>Continue to monitor and provide emotional support</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>📚 Free Training Is Available</h4>
+        <p>The Ministry of Education and CPFSA offer free child safeguarding training for Jamaican schools and educators. Contact <a href="https://moey.gov.jm" target="_blank"><strong>moey.gov.jm</strong></a> or <a href="https://www.cpfsa.gov.jm" target="_blank"><strong>cpfsa.gov.jm</strong></a> to schedule a session for your school today.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ STATISTICS ═══════════ -->
+<section class="stats-section" id="statistics">
+  <div class="stats-inner">
+    <div class="section-label"><div class="bar"></div><p>Why This Matters</p></div>
+    <h2 class="section-title" style="color:white;">The Numbers Tell a Sobering Story</h2>
+    <p class="section-sub">Jamaica faces serious and well-documented challenges around child safety. These statistics make the case for urgent community action.</p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">1 in 3</div>
+        <div class="stat-label">Jamaican children have experienced some form of violence</div>
+        <div class="stat-source">UNICEF Jamaica Country Report, 2022</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~6,000</div>
+        <div class="stat-label">Child abuse reports received annually by CPFSA across Jamaica</div>
+        <div class="stat-source">CPFSA Annual Report, 2021–2022</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">54%</div>
+        <div class="stat-label">Of abused children know their abuser — a family member or trusted adult</div>
+        <div class="stat-source">Jamaica Child Victimisation Study, CPFSA 2020</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">#1</div>
+        <div class="stat-label">Most common form of abuse reported: neglect, ahead of physical and sexual abuse</div>
+        <div class="stat-source">CPFSA Annual Report, 2022</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">72%</div>
+        <div class="stat-label">Of trafficking victims in Jamaica are female — majority under 18 years old</div>
+        <div class="stat-source">U.S. TIP Report on Jamaica, 2023 / NATFATIP</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">40%</div>
+        <div class="stat-label">Of Jamaican students report experiencing bullying at school</div>
+        <div class="stat-source">Ministry of Education &amp; UNESCO Caribbean Study, 2019</div>
+      </div>
+    </div>
+    <div class="stats-ref">
+      <strong>References:</strong> UNICEF Jamaica (unicef.org/jamaica) · Child Protection &amp; Family Services Agency (cpfsa.gov.jm) · U.S. Department of State TIP Report (state.gov/tip) · NATFATIP Jamaica · UNESCO-PEER Report on Bullying in Caribbean Schools (2019) · Office of the Children's Advocate (oca.gov.jm)
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GOVERNMENT RESOURCES ═══════════ -->
+<section class="section" id="resources">
+  <div class="section-label"><div class="bar"></div><p>Official Links</p></div>
+  <h2 class="section-title">Jamaican Government &amp; National Resources</h2>
+  <p class="section-sub">Jamaica's official organisations responsible for child protection, family welfare, and justice.</p>
+  <div class="resources-grid">
+    <a class="resource-card" href="https://www.cpfsa.gov.jm" target="_blank">
+      <div class="resource-icon">🏛️</div>
+      <div>
+        <div class="resource-name">Child Protection &amp; Family Services Agency (CPFSA)</div>
+        <div class="resource-desc">Jamaica's lead child protection body. Report abuse, access family services, find your nearest parish office.</div>
+        <div class="resource-link">cpfsa.gov.jm →</div>
+      </div>
+    </a>
+    <a class="resource-card" href="https://www.oca.gov.jm" target="_blank">
+      <div class="resource-icon">⚖️</div>
+      <div>
+        <div class="resource-name">Office of the Children's Advocate (OCA)</div>
+        <div class="resource-desc">Independent body that monitors and advocates for the rights of all children in Jamaica.</div>
+        <div class="resource-link">oca.gov.jm →</div>
+      </div>
+    </a>
+    <a class="resource-card" href="https://www.jcf.gov.jm" target="_blank">
+      <div class="resource-icon">👮</div>
+      <div>
+        <div class="resource-name">Jamaica Constabulary Force (JCF)</div>
+        <div class="resource-desc">Report crimes against children, missing persons, trafficking and all urgent safety matters.</div>
+        <div class="resource-link">jcf.gov.jm →</div>
+      </div>
+    </a>
+    <a class="resource-card" href="https://moey.gov.jm" target="_blank">
+      <div class="resource-icon">📚</div>
+      <div>
+        <div class="resource-name">Ministry of Education &amp; Youth (MOEY)</div>
+        <div class="resource-desc">School safeguarding policies, guidance counsellor support, and child welfare in education settings.</div>
+        <div class="resource-link">moey.gov.jm →</div>
+      </div>
+    </a>
+    <a class="resource-card" href="https://www.moh.gov.jm" target="_blank">
+      <div class="resource-icon">🏥</div>
+      <div>
+        <div class="resource-name">Ministry of Health &amp; Wellness</div>
+        <div class="resource-desc">Mental health support, medical services for abuse survivors, and child health programmes.</div>
+        <div class="resource-link">moh.gov.jm →</div>
+      </div>
+    </a>
+    <a class="resource-card" href="https://www.unicef.org/jamaica" target="_blank">
+      <div class="resource-icon">🌐</div>
+      <div>
+        <div class="resource-name">UNICEF Jamaica</div>
+        <div class="resource-desc">Child rights research, data, and advocacy. Key source for child protection statistics in Jamaica.</div>
+        <div class="resource-link">unicef.org/jamaica →</div>
+      </div>
+    </a>
+    <a class="resource-card" href="https://www.ncda.org.jm" target="_blank">
+      <div class="resource-icon">💊</div>
+      <div>
+        <div class="resource-name">National Council on Drug Abuse (NCDA)</div>
+        <div class="resource-desc">Support for families affected by substance abuse, including prevention programmes for youth.</div>
+        <div class="resource-link">ncda.org.jm →</div>
+      </div>
+    </a>
+    <a class="resource-card" href="https://www.moj.gov.jm" target="_blank">
+      <div class="resource-icon">📜</div>
+      <div>
+        <div class="resource-name">Ministry of Justice Jamaica</div>
+        <div class="resource-desc">Legal information, victim support services, and access to justice for families and children.</div>
+        <div class="resource-link">moj.gov.jm →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════ EMERGENCY CONTACTS ═══════════ -->
+<section class="section" id="contact" style="padding-top:0;">
+  <div class="section-label"><div class="bar"></div><p>Get Help Now</p></div>
+  <h2 class="section-title">Emergency &amp; Support Contacts</h2>
+  <p class="section-sub">These numbers are free to call. You can remain anonymous. Help is available 24 hours a day, 7 days a week.</p>
+  <div class="hotline-grid">
+    <div class="hotline-card urgent">
+      <div class="hotline-org">Police Emergency</div>
+      <div class="hotline-number">119</div>
+      <div class="hotline-desc">Immediate danger, violence, or crime in progress.</div>
+    </div>
+    <div class="hotline-card urgent">
+      <div class="hotline-org">CPFSA Child Abuse Hotline</div>
+      <div class="hotline-number">1-888-CHILDREN</div>
+      <div class="hotline-desc">Free, confidential — 24 hours, 7 days a week.</div>
+    </div>
+    <div class="hotline-card">
+      <div class="hotline-org">Children's Registry</div>
+      <div class="hotline-number">1-888-REPORT-IT</div>
+      <div class="hotline-desc">Report sexual abuse, neglect, or child exploitation.</div>
+    </div>
+    <div class="hotline-card">
+      <div class="hotline-org">CISOCA — Sexual Offences</div>
+      <div class="hotline-number">876-967-1772</div>
+      <div class="hotline-desc">Confidential sexual abuse investigation support.</div>
+    </div>
+    <div class="hotline-card">
+      <div class="hotline-org">Anti-Trafficking Hotline (NATFATIP)</div>
+      <div class="hotline-number">876-922-2371</div>
+      <div class="hotline-desc">National Task Force Against Trafficking in Persons.</div>
+    </div>
+    <div class="hotline-card">
+      <div class="hotline-org">Office of the Children's Advocate</div>
+      <div class="hotline-number">876-929-8618</div>
+      <div class="hotline-desc">Report violations of children's rights in Jamaica.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT MISSION ELEVATE ═══════════ -->
+<section class="about-section">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="me-badge">★ Mission Elevate Ltd</div>
+      <h2>Why We Built This Portal</h2>
+      <p>The Fix Di Village is a community initiative by <strong>Mission Elevate Ltd</strong>, dedicated to creating safer environments for Jamaica's children by putting critical information directly into the hands of families, communities and young people themselves.</p>
+      <p>We believe child protection is not just the government's job — it belongs to every parent, neighbour, teacher, and community member. Knowledge is the foundation of safety.</p>
+      <div class="value-list">
+        <div class="value-item"><div class="v-dot"></div><span><strong>Accessible:</strong> Plain language, free to use, built for all Jamaicans</span></div>
+        <div class="value-item"><div class="v-dot"></div><span><strong>Evidence-based:</strong> Grounded in Jamaican law and verified data</span></div>
+        <div class="value-item"><div class="v-dot"></div><span><strong>Community-centred:</strong> Designed for children, parents and village members together</span></div>
+        <div class="value-item"><div class="v-dot"></div><span><strong>Action-oriented:</strong> Every page ends with who to call, what to do, and where to go</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="about-card">
+        <h3>About Mission Elevate Ltd</h3>
+        <p>Mission Elevate Ltd is a Jamaican organisation committed to <em>Elevating Jamaica's Youth Through Education and Entrepreneurship.</em> The Fix Di Village is one of our flagship initiatives in child and family welfare.</p>
+        <p>We partner with government agencies, civil society, schools and faith organisations across the island to reach every child where they are.</p>
+        <p>Our brand voice: <strong>Direct. Confident. Encouraging. Driven.</strong></p>
+        <hr class="about-divider">
+        <div class="contact-line">
+          <strong>Website:</strong> missionelevate.org<br>
+          <strong>Email:</strong> missionelevatetld@gmail.com<br>
+          <strong>Social:</strong> @missionelevatetld
+        </div>
+        <div class="me-tagline">Find. Learn. Achieve. — Mission Elevate Ltd</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="f-brand-name">Fix Di Village</div>
+        <div class="f-brand-sub">A subsidiary initiative of Mission Elevate Ltd.<br>Protecting Jamaica's children — one village at a time.</div>
+        <div class="f-emergency">🚨 Emergency: 1-888-CHILDREN</div>
+      </div>
+      <div class="footer-col">
+        <h5>Portals</h5>
+        <a href="#portals" onclick="openPortal('children')">Children's Portal</a>
+        <a href="#portals" onclick="openPortal('parents')">Parents' Portal</a>
+        <a href="#portals" onclick="openPortal('village')">Community Portal</a>
+        <a href="#statistics">Statistics</a>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="https://www.cpfsa.gov.jm" target="_blank">CPFSA</a>
+        <a href="https://www.oca.gov.jm" target="_blank">Children's Advocate</a>
+        <a href="https://www.jcf.gov.jm" target="_blank">Jamaica Police (JCF)</a>
+        <a href="https://moey.gov.jm" target="_blank">Ministry of Education</a>
+        <a href="https://www.unicef.org/jamaica" target="_blank">UNICEF Jamaica</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Mission Elevate Ltd. All rights reserved. | Fix Di Village</span>
+      <span>Built for Jamaica's children, families and communities. <span class="highlight">Protecting Every Village.</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function openPortal(name) {
+    document.querySelectorAll('.portal-section').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById('portal-' + name);
+    if (el) {
+      el.classList.add('active');
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+
+  function closePortal(name) {
+    const el = document.getElementById('portal-' + name);
+    if (el) el.classList.remove('active');
+    document.getElementById('portals').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function switchTab(prefix, tab, btn) {
+    const portal = document.getElementById('portal-' + (prefix==='c'?'children':prefix==='p'?'parents':'village'));
+    portal.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    portal.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const content = document.getElementById(prefix + '-' + tab);
+    if (content) content.classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
